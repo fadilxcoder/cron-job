@@ -1,0 +1,39 @@
+#!/usr/bin/php
+<?php
+
+$servername = 'localhost';
+$username   = 'root';
+$password   = '';
+$dbname     = 'experimental_db';
+
+$connection = new mysqli($servername, $username, $password, $dbname);
+$connection->set_charset("utf8");
+
+# Errors
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+function insert($tbl, $data)
+{
+    global $connection;
+
+    foreach (array_keys($data) as $key) {
+        $fields[] = "`$key`";
+        $values[] = "'" .$data[$key] . "'";
+    }
+
+    $fields = implode(",", $fields);
+    $values = implode(",", $values);
+    $sql = "INSERT INTO `$tbl`($fields) VALUES ($values)";
+    $connection;
+    $connection->query($sql);
+    return $connection->insert_id;;
+}
+
+insert('cron', [
+    'uid' => 'CRON-' . rand(100, 99999) . '-T-' . rand(100, 99999),
+]);
+
+?>
+
