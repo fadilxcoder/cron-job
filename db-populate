@@ -2,9 +2,9 @@
 <?php
 
 $servername = 'localhost';
-$username   = 'root';
-$password   = '';
-$dbname     = 'experimental_db';
+$username   = 'txdeploy_fx_perso';
+$password   = 'L!.1*?xkPInw';
+$dbname     = 'txdeploy_perso';
 
 $connection = new mysqli($servername, $username, $password, $dbname);
 $connection->set_charset("utf8");
